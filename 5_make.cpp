@@ -5,27 +5,35 @@
 using namespace std;
 
 int main() {
-    //srand(123); // Seed the random number generator
+    srand(time(0)); // Seed random number generator with current time for different results each run
 
-    // Flip a coin 500 times
-    std::vector <std::string> coinFlips;
+    // Vector to store results of 500 flips
+    vector<string> coinFlips;
     string coinFlipResult = "";
-    
-    // write a for loop that iternates over 500 flips and counts heads or tails in the coinFlips vector
 
+    // Flip the coin 500 times
+    for (int i = 0; i < 500; i++) {
+        int thisRandomNumber = rand();
+        if ((thisRandomNumber % 2) == 0) {
+            coinFlipResult = "Heads";
+        } else {
+            coinFlipResult = "Tails";
+        }
+        // Store the result in the vector
+        coinFlips.push_back(coinFlipResult);
+    }
 
     // Count the number of heads
     int headsCount = 0;
-
-    //handy code to iterate through a vector.  I'll give this to you for future reference.
-    //the auto& is a nice way to have c++ declare the variable as whatever type the variable that follows is first assigned to!  In this case it will be a String, because conflips is declared that way earlier
-    for (const auto& flip : coinFlips) {  
+    for (const auto& flip : coinFlips) {
         if (flip == "Heads") {
             ++headsCount;
         }
     }
-    std::cout << "Number of Heads: " <<  headsCount << '\n';
-    std::cout << "Number of Tails: " << coinFlips.size() - headsCount << '\n';
+
+    // Output results
+    cout << "Number of Heads: " << headsCount << '\n';
+    cout << "Number of Tails: " << coinFlips.size() - headsCount << '\n';
 
     return 0;
 }
